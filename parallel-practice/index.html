@@ -221,8 +221,6 @@
       justify-content: flex-end;
       flex-wrap: wrap;
     }
-
-    .bg-toggle,
     .theme-toggle,
     .ai-config-btn {
       border: 1px solid var(--line);
@@ -235,8 +233,6 @@
       font-weight: 800;
       white-space: nowrap;
     }
-
-    .bg-toggle.active,
     .theme-toggle.active,
     .ai-config-btn.active {
       background: #dbeae5;
@@ -1076,7 +1072,6 @@
     body.dark .search,
     body.dark .fill-input,
     body.dark .write-input,
-    body.dark .bg-toggle,
     body.dark .theme-toggle,
     body.dark .ai-config-btn {
       background: #252526;
@@ -1092,7 +1087,6 @@
     }
 
     body.dark .module-btn.active,
-    body.dark .bg-toggle.active,
     body.dark .theme-toggle.active,
     body.dark .ai-config-btn.active {
       background: #094771;
@@ -1433,7 +1427,6 @@
         <div class="top-actions">
           <input class="search" id="searchInput" placeholder="搜索：如 Allreduce、伪共享、warp、delete[]">
           <button class="theme-toggle" id="themeToggle" title="切换亮色或暗色模式">暗色</button>
-          <button class="bg-toggle active" id="bgToggle" title="开启或关闭刷题背景">背景开</button>
         </div>
       </div>
 
@@ -2369,7 +2362,6 @@
       answers: JSON.parse(localStorage.getItem("ppd_answers") || "{}"),
       favorites: JSON.parse(localStorage.getItem("ppd_favorites") || "{}"),
       mistakes: JSON.parse(localStorage.getItem("ppd_mistakes") || "{}"),
-      backgroundOn: localStorage.getItem("ppd_background_on") !== "false",
       darkMode: localStorage.getItem("ppd_dark_mode") === "true",
       drafts: {},
       practiceAnswers: {},
@@ -2421,7 +2413,6 @@
         mistakes: state.mistakes,
         reviewStats: state.reviewStats,
         aiNotes: state.aiNotes,
-        backgroundOn: state.backgroundOn,
         darkMode: state.darkMode,
         savedAt: Date.now()
       };
@@ -2439,10 +2430,6 @@
         };
       }
       if (data.aiNotes) state.aiNotes = data.aiNotes;
-      if (typeof data.backgroundOn === "boolean") {
-        state.backgroundOn = data.backgroundOn;
-        localStorage.setItem("ppd_background_on", state.backgroundOn ? "true" : "false");
-      }
       if (typeof data.darkMode === "boolean") {
         state.darkMode = data.darkMode;
         localStorage.setItem("ppd_dark_mode", state.darkMode ? "true" : "false");
@@ -2982,7 +2969,7 @@
         const emptyHint = (!state.wrongOnly && !state.favOnly && !state.search.trim())
           ? "可以切换其他板块，或进入错题、收藏、二刷继续复习。"
           : "换一个板块、清空搜索，或退出当前模式。";
-        card.innerHTML = `<div class="quiz-portrait ${state.backgroundOn ? "" : "hidden"}"></div><div class="stem">${emptyText}</div><div class="small">${emptyHint}</div>`;
+        card.innerHTML = `<div class="stem">${emptyText}</div><div class="small">${emptyHint}</div>`;
         $("questionList").innerHTML = "";
         return;
       }
@@ -2994,9 +2981,7 @@
       const typeTip = q.type === "write" ? "手写题" : q.type === "fill" ? "填空题" : q.type === "judge" ? "判断题" : "选择题";
       const starred = !!state.favorites[q.id];
       const reviewMode = currentReviewMode();
-      const portraitClass = `${state.backgroundOn ? "" : "hidden"} ${record ? (record.correct ? "answered correct" : "answered wrong") : ""}`.trim();
       card.innerHTML = `
-        <div class="quiz-portrait ${portraitClass}"></div>
         <div class="question-head">
           <div>
             <div class="tagline">
@@ -3630,13 +3615,6 @@
       loadMarkdownNotes(notes);
     }
 
-    function renderBackgroundToggle() {
-      const btn = $("bgToggle");
-      btn.textContent = state.backgroundOn ? "背景开" : "背景关";
-      btn.classList.toggle("active", state.backgroundOn);
-      btn.setAttribute("aria-pressed", state.backgroundOn ? "true" : "false");
-    }
-
     function renderThemeToggle() {
       document.body.classList.toggle("dark", state.darkMode);
       const btn = $("themeToggle");
@@ -3651,7 +3629,6 @@
       renderModules();
       renderTitle(list);
       renderKnowledge();
-      renderBackgroundToggle();
       renderThemeToggle();
       renderAIConfigButton();
       renderReviewBadges();
@@ -3677,12 +3654,6 @@
       state.index = 0;
       render();
     });
-
-    $("bgToggle").onclick = () => {
-      state.backgroundOn = !state.backgroundOn;
-      localStorage.setItem("ppd_background_on", state.backgroundOn ? "true" : "false");
-      render();
-    };
 
     $("themeToggle").onclick = () => {
       state.darkMode = !state.darkMode;
@@ -3842,7 +3813,4 @@
   </script>
 </body>
 </html>
-
-
-
 
