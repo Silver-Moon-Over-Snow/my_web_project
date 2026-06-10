@@ -2536,32 +2536,48 @@ $$
               fnMap.set(n, details);
             }
           });
-          // Second pass: move footnotes next to their <sup>N</sup> references
-          fnMap.forEach((details, n) => {
+          // Second pass: move footnotes to their reference paragraphs
+          // Sort by footnote number so multiple notes at same para stay ordered
+          const sortedFns = [...fnMap.entries()].sort((a, b) => parseInt(a[0]) - parseInt(b[0]));
+          sortedFns.forEach(([n, details]) => {
+            let moved = false;
+            // Strategy A: find <sup>N</sup> reference
             const sups = sec.querySelectorAll('sup');
             for (const sup of sups) {
               if (sup.textContent.trim() === n) {
                 const parentP = sup.closest('p, li, h3, h4, .md-block');
                 if (parentP) {
                   parentP.after(details);
+                  moved = true;
                 }
-                return;
+                break;
               }
             }
-            // Fallback: also check for plain-text references like "。N" or "，N"
-            // by scanning text nodes (limited to simple cases)
-            const walker = document.createTreeWalker(sec, NodeFilter.SHOW_TEXT);
-            let node;
-            while ((node = walker.nextNode())) {
-              const txt = node.textContent;
-              const match = txt.match(new RegExp('[。，,.]\\s*' + n + '(?=[\\s，。,;若设其则即但而所因故])'));
-              if (match && node.parentElement) {
-                const parentP = node.parentElement.closest('p, li, h3, h4');
-                if (parentP) {
-                  parentP.after(details);
-                  return;
+            // Strategy B: find plain-text reference like 。N, ，N, ^N
+            if (!moved) {
+              const walker = document.createTreeWalker(sec, NodeFilter.SHOW_TEXT);
+              let node;
+              while ((node = walker.nextNode())) {
+                // Skip text inside the footnote itself to avoid self-matching
+                if (node.parentElement && node.parentElement.closest('.fn-note')) continue;
+                const txt = node.textContent;
+                // Match: punctuation/comma + optional whitespace + N + sentence break
+                // Includes: 。3, ，1, .^7, ,<sup>8</sup> patterns
+                const refRe = new RegExp('[。，,.]\\s*\\^?' + n + '(?=\\s|[，。,;：、一-鿿]|若|设|其|则|即|但|而|所|因|故|$)');
+                const match = txt.match(refRe);
+                if (match && node.parentElement) {
+                  const parentP = node.parentElement.closest('p, li, h3, h4');
+                  if (parentP) {
+                    parentP.after(details);
+                    moved = true;
+                    break;
+                  }
                 }
               }
+            }
+            // Strategy C: if still not moved, append to end of section
+            if (!moved) {
+              sec.appendChild(details);
             }
           });
         });
