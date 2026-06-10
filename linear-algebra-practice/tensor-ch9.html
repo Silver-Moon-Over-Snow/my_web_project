@@ -250,7 +250,8 @@ window.submitComment=(id)=>{
   sa(id,c);inp.value='';buildComments(id);
 };
 window.copySection=(id,btn)=>{
-  const r=document.getElementById('raw-'+id)?.textContent||'';
+  const sec=document.getElementById(id);
+  const r=sec?.querySelector('.sec-body')?.dataset.raw||'';
   navigator.clipboard.writeText(r).then(()=>{
     btn.classList.add('copied');btn.querySelector('span').textContent='已复制';
     setTimeout(()=>{btn.classList.remove('copied');btn.querySelector('span').textContent='复制'},1500);
@@ -322,8 +323,9 @@ fetch('../notes/tensor-ch9.md')
             <button class="cmt-submit" onclick="submitComment('${id}')">发送</button>
           </div>
         </div>
-        <script type="text/plain" id="raw-${id}">${content.replace(/<\/script/g,'<\\/script')}</script>
       `;
+      // store raw content in dataset instead of dom node to avoid </script> breaking page
+      div.querySelector('.sec-body').dataset.raw = content;
       cont.appendChild(div);
     });
 
