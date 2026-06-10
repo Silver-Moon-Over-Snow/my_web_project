@@ -1013,6 +1013,36 @@
       white-space: pre;
     }
 
+    /* Footnotes */
+    .fn-note {
+      display: block;
+      margin: 6px 0;
+      font-size: 0.92em;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: var(--panel);
+    }
+    .fn-note summary {
+      cursor: pointer;
+      padding: 5px 10px;
+      color: var(--accent);
+      font-weight: 500;
+      border-radius: 6px;
+      user-select: none;
+    }
+    .fn-note summary:hover {
+      background: var(--hover);
+    }
+    .fn-note[open] summary {
+      border-bottom: 1px solid var(--line);
+      border-radius: 6px 6px 0 0;
+      margin-bottom: 0;
+    }
+    .fn-note .fn-content {
+      padding: 8px 12px 10px;
+      line-height: 1.65;
+    }
+
     @media (max-width: 880px) {
       .app { grid-template-columns: 1fr; }
       aside { position: static; height: auto; }
@@ -2382,6 +2412,25 @@ $$
         save();
         render();
       };
+
+      // Setup clickable footnotes in chapter sections
+      setTimeout(() => {
+        document.querySelectorAll('.chapter-sec').forEach(sec => {
+          sec.querySelectorAll('blockquote').forEach(bq => {
+            const text = bq.textContent.trim();
+            const m = text.match(/^注(\d+)[：:]/);
+            if (m) {
+              const n = m[1];
+              const details = document.createElement('details');
+              details.className = 'fn-note';
+              details.id = 'fn' + n;
+              const body = text.replace(/^注\d+[：:]\s*/, '');
+              details.innerHTML = '<summary>📝 注' + n + '</summary><div class="fn-content">' + body + '</div>';
+              bq.replaceWith(details);
+            }
+          });
+        });
+      }, 120);
     }
 
     function render() {

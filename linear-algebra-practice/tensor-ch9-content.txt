@@ -39,7 +39,7 @@ tags: [高等代数, 张量, 线性泛函, 双线性型, Obsidian]
 
 线性代数考虑的自变量不局限在数集中，可以是一般的线性空间，这时，如果映射是线性的，就得到一个线性泛函。
 
-**定义9.1.** (V ; F)为线性空间，称f : V →F为线性泛函(linear functional)，1若
+**定义9.1.** (V ; F)为线性空间，称f : V $\to$ F为线性泛函(linear functional)，1若
 
 $$
 f(\lambda a + \mu b) = \lambda f(a) + \mu f(b),\forall a, b \in V, \lambda, \mu \in F.
@@ -47,13 +47,13 @@ $$
 
 跟之前类似，本章仅讨论实线性泛函($\mathbb{F} = \mathbb{R}$).
 
-**例9.1.** 在V = $\mathbb{R}^3$中，任取一个向量，如b = (1, 2, 3)<sup>T</sup>,<sup>2</sup>定义函数
+**例9.1.** 在V = $\mathbb{R}^3$中，任取一个向量，如b = (1, 2, 3)$^\mathsf{T}$,<sup>2</sup>定义函数
 
 $$
 f(a) = a^1 \times 1 + a^2 \times 2 + a^3 \times 3 = (a, b)
 $$
 
-构成了一个线性泛函，这里a = (a<sup>1</sup>, a<sup>2</sup>, a<sup>3</sup>)<sup>T</sup> ∈$\mathbb{R}^3$.
+构成了一个线性泛函，这里a = (a<sup>1</sup>, a<sup>2</sup>, a<sup>3</sup>)$^\mathsf{T}$ ∈$\mathbb{R}^3$.
 
 本章有些指标用上标表示，例如这里a的坐标，原因和规则后面解释。一般而言，对于内积中的两个变量，前一个向量的坐标用上标，后一个用下标。3
 
@@ -81,9 +81,9 @@ V 上所有线性泛函构成集合L(V ; F).在L(V ; F)上定义
 
 在V = $\mathbb{R}^n$中由于线性性的要求，线性泛函必表示为(b<sub>1</sub>, · · ·, b<sub>n</sub> $\in \mathbb{R}$):
 
-f(a) = b<sub>1</sub>a<sup>1</sup> + · · · + b<sub>n</sub>a<sup>n</sup>,∀a = (a<sup>1</sup>, · · ·, a<sup>n</sup>)<sup>T</sup> ∈$\mathbb{R}^n$.
+f(a) = b<sub>1</sub>a<sup>1</sup> + · · · + b<sub>n</sub>a<sup>n</sup>,∀a = (a<sup>1</sup>, · · ·, a<sup>n</sup>)$^\mathsf{T}$ ∈$\mathbb{R}^n$.
 
-注意到$\mathbb{R}^n$中有自然定义的内积（构成欧氏空间E<sup>n</sup>）结构，视b = (b<sub>1</sub>, · · ·, b<sub>n</sub>)<sup>T</sup>为一个向量，上述泛函可表示为内积或向量相乘：
+注意到$\mathbb{R}^n$中有自然定义的内积（构成欧氏空间E<sup>n</sup>）结构，视b = (b<sub>1</sub>, · · ·, b<sub>n</sub>)$^\mathsf{T}$为一个向量，上述泛函可表示为内积或向量相乘：
 
 $$
 f(a) = (a, b) = a^Tb = b^Ta.
@@ -113,7 +113,7 @@ $$
 
 > 注5：无穷维赋范线性空间中，对偶空间定义为所有有界线性泛函构成的空间：而有限维空间上的线性泛函总是有界的。
 
-这里{e<sub>1</sub>, · · ·, e<sub>n</sub>}为自然基。再令b = (b<sub>1</sub>, · · ·, b<sub>n</sub>)<sup>T</sup>,由f的线性性
+这里{e<sub>1</sub>, · · ·, e<sub>n</sub>}为自然基。再令b = (b<sub>1</sub>, · · ·, b<sub>n</sub>)$^\mathsf{T}$,由f的线性性
 
 $$
 f(a)= f(a^1e_1 + \cdots + a^ne_n)
@@ -280,7 +280,7 @@ $$
 [\varepsilon ^1, \cdots, \varepsilon ^n] = [\varepsilon _1, \cdots, \varepsilon _n]G^{-1}
 $$
 
-展开，其坐标仍为原来的基{ε<sub>1</sub>, · · ·, ε<sub>n</sub>}在给定泛函下的取值(y<sub>1</sub>, · · ·, y<sub>n</sub>)<sup>T</sup>.
+展开，其坐标仍为原来的基{ε<sub>1</sub>, · · ·, ε<sub>n</sub>}在给定泛函下的取值(y<sub>1</sub>, · · ·, y<sub>n</sub>)$^\mathsf{T}$.
 
 直接计算：
 
@@ -391,7 +391,7 @@ $$
 
 **例9.4.** $\mathbb{R}^3$中取自然基{e<sub>1</sub>, e<sub>2</sub>, e<sub>3</sub>}.
 
-1. 计算对偶基；若向量a在自然基下坐标为x = (1, 2, 3)<sup>T</sup>，对偶基下某线性泛函f的坐标向量为y = (2, 3, 4)<sup>T</sup>, 求f(a).
+1. 计算对偶基；若向量a在自然基下坐标为x = (1, 2, 3)$^\mathsf{T}$，对偶基下某线性泛函f的坐标向量为y = (2, 3, 4)$^\mathsf{T}$, 求f(a).
 
 2. 若另选一组基
 
@@ -463,14 +463,14 @@ $$
  (\varepsilon _3, \varepsilon ^1) = (1, 1, 1)\varepsilon ^1 = 0,
 $$
 
-解出ε<sup>1</sup> = (1, −1, 0)<sup>T</sup>;类似地，从
+解出ε<sup>1</sup> = (1, −1, 0)$^\mathsf{T}$;类似地，从
 
 $$
 (1, 0, 0)\varepsilon ^2 = 0, (1, 1, 0)\varepsilon ^2 = 1, (1, 1, 1)\varepsilon ^2 = 0,
  (1, 0, 0)\varepsilon ^3 = 0, (1, 1, 0)\varepsilon ^3 = 0, (1, 1, 1)\varepsilon ^3 = 1
 $$
 
-分别解出ε<sup>2</sup> = (0, 1, −1)<sup>T</sup>, ε<sup>3</sup> = (0, 0, 1)<sup>T</sup>.
+分别解出ε<sup>2</sup> = (0, 1, −1)$^\mathsf{T}$, ε<sup>3</sup> = (0, 0, 1)$^\mathsf{T}$.
 
 其实，把它们排成矩阵就是
 
@@ -632,7 +632,7 @@ $$
 
 后者也称为广义傅里叶分解。而其基础在于：由上述表达式看出a = 0<sub>V</sub> 的充要条件是∀f ∈$V^{*}$成立f(a) = 0;而根据定义f = 0<sub>V ∗</sub>的充要条件是∀a ∈ V 成立f(a) = 0.
 
-向量与线性泛函分别在基和对偶基下分解后，若记坐标向量为x = (x<sup>1</sup>, · · ·, x<sup>n</sup>)<sup>T</sup>, y = (y<sub>1</sub>, · · ·, y<sub>n</sub>)<sup>T</sup>,则取值为
+向量与线性泛函分别在基和对偶基下分解后，若记坐标向量为x = (x<sup>1</sup>, · · ·, x<sup>n</sup>)$^\mathsf{T}$, y = (y<sub>1</sub>, · · ·, y<sub>n</sub>)$^\mathsf{T}$,则取值为
 
 $$
 f(a) = (x, y)_R = x^iy_i,
@@ -950,7 +950,7 @@ $$
 
 线性泛函对于每个向量给出一个数值，双线性型则对（在同一个空间里）每两个向量给出一个数值。
 
-**定义9.2.** V 为F上的n维线性空间，若f : V × V →F关于两个元都线性，即
+**定义9.2.** V 为F上的n维线性空间，若f : V × V $\to$ F关于两个元都线性，即
 
 $$
 f(\lambda a + \mu \tilde a, b)= \lambda f(a, b) + \mu f(\tilde a, b),
@@ -963,7 +963,7 @@ $$
 
 **例9.7.** 若g, h ∈$V^{*}$,定义f(a, b) = g(a)h(b)为双线性型。<sup>10</sup>
 
-**例9.8.** A为n阶方阵，∀a, b ∈$\mathbb{R}^n$,定义f(a, b) = a<sup>T</sup>Ab给出了一个双线性型。
+**例9.8.** A为n阶方阵，∀a, b ∈$\mathbb{R}^n$,定义f(a, b) = a$^\mathsf{T}$Ab给出了一个双线性型。
 
 > 注10：这就是下一节中的 g ⊗ h.
 
@@ -1063,7 +1063,7 @@ $$
 A = T^{\mathsf{T}}AT.\tilde
 $$
 
-因此基变换前后的度量阵相合。转置在这里表现为ℓ的求和中，在t<sup>ℓ</sup>    <sub>i</sub>, a<sup>ℓ</sup><sub>m</sub>中都是上标，而f(ε<sub>i</sub>, ε<sub>j</sub>)作为度量阵为˜a<sup>i</sup> <sub>j</sub>, 其中i为上标，与上述求和之后i落在下标，上下反了。若考虑(Θ) = T<sub></sub><sup>T</sup>,其θ<sup>i</sup> <sub>ℓ</sub>= t<sup>ℓ</sup><sub>i</sub>,有
+因此基变换前后的度量阵相合。转置在这里表现为ℓ的求和中，在t<sup>ℓ</sup>    <sub>i</sub>, a<sup>ℓ</sup><sub>m</sub>中都是上标，而f(ε<sub>i</sub>, ε<sub>j</sub>)作为度量阵为˜a<sup>i</sup> <sub>j</sub>, 其中i为上标，与上述求和之后i落在下标，上下反了。若考虑(Θ) = T<sub></sub>$^\mathsf{T}$,其θ<sup>i</sup> <sub>ℓ</sub>= t<sup>ℓ</sup><sub>i</sub>,有
 
 $$
 \tilde a^i_j = \theta ^i_ℓt^m_j a^ℓ_m,
@@ -1129,7 +1129,7 @@ $$
 T AT^{\mathsf{T}} = diag(I_p, -I_m, O).
 $$
 
-取V 的基(ε<sub>1</sub>, · · ·, ε<sub>n</sub>) = (e<sub>1</sub>, · · ·, e<sub>n</sub>)T<sub></sub><sup>T</sup>,则在这组基下f的矩阵表示为
+取V 的基(ε<sub>1</sub>, · · ·, ε<sub>n</sub>) = (e<sub>1</sub>, · · ·, e<sub>n</sub>)T<sub></sub>$^\mathsf{T}$,则在这组基下f的矩阵表示为
 
 $$
 A = (T^{\mathsf{T}})^TAT^{\mathsf{T}} = diag(I_p, -I_m, O).\tilde
@@ -1195,7 +1195,7 @@ $$
 f(a, b) = (x^1y^1 + \cdots + x^py^p) -(x^p+1y^p+1 + \cdots + x^ry^r).
 $$
 
-如前所述，在取定基以后，双线性型f(a, b) = x<sup>T</sup>Ay，若A(双线性型)对称，那么x<sup>T</sup>Ax如前所述就是一个二次型。因此，称对称双线性型f(a, b) 诱导出的f(a, a)为二次型。反过来，
+如前所述，在取定基以后，双线性型f(a, b) = x$^\mathsf{T}$Ay，若A(双线性型)对称，那么x$^\mathsf{T}$Ax如前所述就是一个二次型。因此，称对称双线性型f(a, b) 诱导出的f(a, a)为二次型。反过来，
 
 $$
 = 1
@@ -1843,7 +1843,7 @@ g<sub>1</sub>(t<sup>1</sup><sub>1</sub>u<sup>1</sup> + t<sup>1</sup><sub>2</sub>
 
 T 和f均由6个系数t<sup>1</sup> <sub>1</sub>, t<sup>2</sup><sub>1</sub>, t<sup>3</sup><sub>1</sub>, t<sup>1</sup><sub>2</sub>, t<sup>2</sup><sub>2</sub>, t<sup>3</sup><sub>2</sub>唯一确定，于是相互之间可以构造1- 1映射；该映射保持线性，故为同构。
 
-上述结论可以进一步推广为：(p, 1)阶张量f ∈$V^{*}$    <sub>1</sub> ⊗· · · ⊗$V^{*}$<sub>p</sub> ⊗V 唯一决定一个V<sub>1</sub> ⊗· · · ⊗V<sub>p</sub> →V 的线性映射。
+上述结论可以进一步推广为：(p, 1)阶张量f ∈$V^{*}$    <sub>1</sub> ⊗· · · ⊗$V^{*}$<sub>p</sub> ⊗V 唯一决定一个V<sub>1</sub> ⊗· · · ⊗V<sub>p</sub> $\to$ V 的线性映射。
 
 **定理9.6.** $V^{*}$<sub>1</sub> ⊗· · · ⊗$V^{*}$<sub>p</sub> ⊗V ∼= L(V<sub>1</sub> ⊗· · · ⊗V<sub>p</sub>, V ).
 
@@ -1985,7 +1985,7 @@ $$
 
 > 注13：因为与式子中上标k相同，实际上是对每一个k作用，之后关于k求和。
 
-矩阵向量表示如果写成行，就是(e<sup>1</sup>, e<sup>2</sup>, e<sup>3</sup>) = (˜e<sup>1</sup>, ˜e<sup>2</sup>, ˜e<sup>3</sup>)T<sub></sub><sup>T</sup>,(˜e<sup>1</sup>, ˜e<sup>2</sup>, ˜e<sup>3</sup>) = (e<sup>1</sup>, e<sup>2</sup>, e<sup>3</sup>)T<sup>−T</sup>.
+矩阵向量表示如果写成行，就是(e<sup>1</sup>, e<sup>2</sup>, e<sup>3</sup>) = (˜e<sup>1</sup>, ˜e<sup>2</sup>, ˜e<sup>3</sup>)T<sub></sub>$^\mathsf{T}$,(˜e<sup>1</sup>, ˜e<sup>2</sup>, ˜e<sup>3</sup>) = (e<sup>1</sup>, e<sup>2</sup>, e<sup>3</sup>)T<sup>−T</sup>.
 
 有意思的是，在爱因斯坦约定下，只要知道了用的是逆矩阵T,上下标只能这么写才能正确地去留。利用这一点，由于泛函f 在对偶基下的变换跟对偶基的变换又差一个求逆，于是泛函的坐标变换表达式要通过T 的分量联系坐标˜y<sub>i</sub>与y<sub>j</sub>, 按照这样的规则只能是
 
@@ -2488,7 +2488,7 @@ $$
 \varepsilon _1 = (1, 0, 0)^T, \varepsilon _2 = (1, 1, 0)^T, \varepsilon _3 = (1, 1, 1)^T,
 $$
 
-向量a在这组基下坐标向量为x = (1, 2, 3)<sup>T</sup>;计算对偶基，若此对偶基下某线性泛函f的坐标向量为y = (2, 3, 4)<sup>T</sup>, 求f(a).另选一组基
+向量a在这组基下坐标向量为x = (1, 2, 3)$^\mathsf{T}$;计算对偶基，若此对偶基下某线性泛函f的坐标向量为y = (2, 3, 4)$^\mathsf{T}$, 求f(a).另选一组基
 
 $$
 \tilde \varepsilon _1 = (0, 0, 1)^T, \tilde \varepsilon _2 = (0, 1, 1)^T, \tilde \varepsilon _3 = (1, 0, 1)^T,
@@ -2518,9 +2518,9 @@ $$
 
 7. f(a, b)为$\mathbb{R}^3$上的双线性型，若已知：
 
-f([1, 0, 0]<sup>T</sup>, [1, 1, 1]<sup>T</sup>) = 3;f([1, 0, 0]<sup>T</sup>, [1, 1, 0]<sup>T</sup>) = 2; f([1, 0, 0]<sup>T</sup>, [1, 0, 0]<sup>T</sup>) = 1;f([0, 1, 0]<sup>T</sup>, [1, 1, 0]<sup>T</sup>) = 2; f([0, 1, 0]<sup>T</sup>, [1, 0, 1]<sup>T</sup>) = 1;f([0, 1, 0]<sup>T</sup>, [0, 0, 1]<sup>T</sup>) = 0; f([0, 0, 1]<sup>T</sup>, [1, 0, 0]<sup>T</sup>) = 1;f([0, 0, 1]<sup>T</sup>, [0, 1, 0]<sup>T</sup>) = 1; f([0, 0, 1]<sup>T</sup>, [0, 0, 1]<sup>T</sup>) = 1;
+f([1, 0, 0]$^\mathsf{T}$, [1, 1, 1]$^\mathsf{T}$) = 3;f([1, 0, 0]$^\mathsf{T}$, [1, 1, 0]$^\mathsf{T}$) = 2; f([1, 0, 0]$^\mathsf{T}$, [1, 0, 0]$^\mathsf{T}$) = 1;f([0, 1, 0]$^\mathsf{T}$, [1, 1, 0]$^\mathsf{T}$) = 2; f([0, 1, 0]$^\mathsf{T}$, [1, 0, 1]$^\mathsf{T}$) = 1;f([0, 1, 0]$^\mathsf{T}$, [0, 0, 1]$^\mathsf{T}$) = 0; f([0, 0, 1]$^\mathsf{T}$, [1, 0, 0]$^\mathsf{T}$) = 1;f([0, 0, 1]$^\mathsf{T}$, [0, 1, 0]$^\mathsf{T}$) = 1; f([0, 0, 1]$^\mathsf{T}$, [0, 0, 1]$^\mathsf{T}$) = 1;
 
-求f(a, b)的度量阵，以及f([1, 2, 3]<sup>T</sup>, [3, 2, 1]<sup>T</sup>).
+求f(a, b)的度量阵，以及f([1, 2, 3]$^\mathsf{T}$, [3, 2, 1]$^\mathsf{T}$).
 
 8. 在n维内积空间V 上，求证：双线性型f(a, b)为对称的，当且仅当V 有一组标准正交基，使f(a, b)的度量阵为对角阵。
 
