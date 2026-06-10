@@ -1562,7 +1562,7 @@ $$
           {title:"3. 基与维数", items:["若 $e_i$ 是 $V$ 的基，$f_j$ 是 $W$ 的基，则 $e_i\\otimes f_j$ 是 $V\\otimes W$ 的基。", "$\\dim(V\\otimes W)=\\dim V\\cdot\\dim W$。", "坐标展开：若 $v=\\sum a_i e_i$，$w=\\sum b_j f_j$，则 $v\\otimes w=\\sum a_i b_j e_i\\otimes f_j$。"]},
           {title:"4. 与矩阵的类比", items:["$\\mathbb{R}^m\\otimes\\mathbb{R}^n$ 可与 $m\\times n$ 矩阵空间类比。", "简单张量对应秩至多 1 的外积矩阵。", "一般矩阵/张量通常需要多个简单张量相加。"]},
           {title:"5. 与 Hom 的关系", items:["有限维下 $V^*\\otimes W$ 与 $\\operatorname{Hom}(V,W)$ 自然同构。", "$\\varphi\\otimes w$ 对应线性映射 $v\\mapsto \\varphi(v)w$。", "这是把张量和线性映射联系起来的重要例子。"]},
-          {title:"📖 完整章节阅读", items:["[第九章 张量 全文 →](tensor-ch9.html) 包含 9.1 线性泛函、9.2 双线性型、9.3 张量概念、9.4 张量运算、9.5 作业，支持逐节复制与评论。"]}
+          {title:"📖 完整章节阅读", items:["点击下方按钮加载完整第九章：9.1 线性泛函、9.2 双线性型、9.3 张量概念、9.4 张量运算、9.5 作业，含原文公式与推导。"]}
         ]
       }
     };
@@ -1582,7 +1582,9 @@ $$
       dark: localStorage.getItem("alg_dark") === "true",
       accent: localStorage.getItem("alg_accent") || "green",
       focusId: null,
-      returnView: "bank"
+      returnView: "bank",
+      chapter9Loaded: false,
+      chapter9Sections: null
     };
 
     const $ = (id) => document.getElementById(id);
@@ -2225,6 +2227,29 @@ $$
     function renderStudy() {
       const filter = currentFilter();
       const info = filter.kind === "module" ? (knowledge[filter.module] || knowledge["全部"]) : knowledge["全部"];
+      const isTensor = filter.module === "张量";
+      const sectionsLoaded = isTensor && state.chapter9Loaded && state.chapter9Sections;
+
+      let chapterHTML = '';
+      if (isTensor) {
+        if (sectionsLoaded) {
+          chapterHTML = state.chapter9Sections.map(s => `
+            <div class="study-card chapter-sec">
+              <h3>${escapeHTML(s.heading)}</h3>
+              <div class="md-block">${markdown(s.content)}</div>
+            </div>
+          `).join('');
+        } else {
+          chapterHTML = `
+            <div class="study-card note-area" style="text-align:center;padding:28px">
+              <p style="margin-bottom:14px">第九章包含 9.1 线性泛函、9.2 双线性型、9.3 张量概念、9.4 张量运算、9.5 作业。</p>
+              <button class="tool-btn primary" id="loadChapter9Btn">📖 加载完整章节</button>
+              <p class="small" style="margin-top:10px" id="chapter9Status"></p>
+            </div>
+          `;
+        }
+      }
+
       $("studyView").innerHTML = `
         <div class="study-card note-area">
           <h3>${info.title}</h3>
@@ -2236,6 +2261,7 @@ $$
             <ul>${sec.items.map(item => `<li>${inline(item)}</li>`).join("")}</ul>
           </div>
         `).join("")}
+        ${chapterHTML}
         <div class="study-card note-area">
           <h3>我的知识补充</h3>
           <textarea id="noteInput" placeholder="把老师强调、错题总结、AI 解释粘到这里">${escapeHTML(state.notes[state.module] || "")}</textarea>
@@ -2243,6 +2269,44 @@ $$
           ${state.notes[state.module] ? `<h3>补充预览</h3>${markdown(state.notes[state.module])}` : `<div class="small">支持 Markdown 和 TeX：例如 \`**重点**\`、\`$\\dim\\ker(A-\\lambda I)$\`、\`$$\\frac{1}{2}\\|x\\|^2$$\`。</div>`}
         </div>
       `;
+
+      // Load chapter button
+      const loadBtn = $("loadChapter9Btn");
+      if (loadBtn) {
+        loadBtn.onclick = () => {
+          loadBtn.disabled = true;
+          loadBtn.textContent = '加载中...';
+          const status = $("chapter9Status");
+          if (status) status.textContent = '正在获取第九章内容...';
+
+          fetch('tensor-ch9-content.txt')
+            .then(r => { if (!r.ok) throw Error('fetch failed'); return r.text(); })
+            .then(md => {
+              // strip frontmatter
+              const bs = md.startsWith('---') ? md.indexOf('---', 4) + 3 : 0;
+              const body = md.slice(bs).trim();
+              const parts = body.split(/^## /m);
+              parts.shift(); // discard intro (# heading)
+              const sections = parts.map(p => {
+                const nl = p.indexOf('\n');
+                return {
+                  heading: nl > -1 ? p.slice(0, nl).trim() : p.trim(),
+                  content: nl > -1 ? p.slice(nl + 1).trim() : ''
+                };
+              });
+              state.chapter9Sections = sections;
+              state.chapter9Loaded = true;
+              render(); // re-render to show content
+            })
+            .catch(e => {
+              if (status) status.textContent = '加载失败，请刷新后重试。';
+              loadBtn.disabled = false;
+              loadBtn.textContent = '📖 重试加载';
+              console.error(e);
+            });
+        };
+      }
+
       $("saveNoteBtn").onclick = () => {
         state.notes[state.module] = $("noteInput").value;
         save();
