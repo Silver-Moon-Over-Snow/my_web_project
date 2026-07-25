@@ -1,24 +1,24 @@
-# Cheerly 的个人主页
+# Jiaqi Li
 
-这是 `cheerly-pku.github.io` 的个人主页仓库，包含主页、Markdown 笔记和课程资料入口。
+Undergraduate student at the [College of Engineering](https://www.coe.pku.edu.cn/), [Peking University](https://www.pku.edu.cn/).
 
-## 主要入口
+I am interested in mathematics, mechanics, computer science, and intelligent science. I also build practice and review websites for courses that I have studied. I participate in undergraduate research with [Assoc. Prof. Mohan Chen](http://www2.coe.pku.edu.cn/subpaget.asp?id=663)'s [research group](http://www2.coe.pku.edu.cn/subpaget.asp?id=664) at Peking University.
 
-- `index.html`：当前发布用的手写静态主页。
-- `note.html`：手写静态主页使用的 Markdown 笔记阅读页。
-- `parallel-practice/`：并行程序设计资料页。
-- `linear-algebra-practice/`：线性代数/张量章节资料页。
+[Homepage](https://cheerly-pku.github.io/) · [CV (English)](https://cheerly-pku.github.io/cv/Jiaqi_Li_CV.pdf) · [CV (中文)](https://cheerly-pku.github.io/cv/Jiaqi_Li_CV_zh.pdf) · [Email](mailto:jq_li25@stu.pku.edu.cn)
 
-## Astro 源码
+## Selected Work
 
-仓库里也保留了一套 Astro 版本源码：
+- [Solving Functional Equations via the Injection-Commutation Method](https://cheerly-pku.github.io/#publications), published in *Middle School Mathematics*, 2023(5).
+- [ABACUS Pull Request #7580](https://github.com/deepmodeling/abacus-develop/pull/7580): a PPCG iterative diagonalization solver for an open-source electronic-structure package.
+- [Linear Algebra Practice](https://cheerly-pku.github.io/linear-algebra-practice/) and [Parallel Practice](https://cheerly-pku.github.io/parallel-practice/): course practice and review materials.
 
-- `src/pages/`：Astro 页面入口。
-- `src/content/notes/`：Astro 内容集合里的笔记。
-- `src/styles/global.css`：Astro 版本样式。
-- `public/images/`：Astro 构建时复制到站点根目录的图片资源。
+## 中文简介
 
-常用命令：
+我是李家齐，北京大学工学院本科生。我对数学、力学、计算机科学、智能科学等多个领域颇有兴趣，也为部分课程整理了练习与复习网站。目前参与陈默涵老师课题组的本科生科研训练。
+
+## About This Repository
+
+This repository contains the source and published files for [cheerly-pku.github.io](https://cheerly-pku.github.io/). The main site is built with [Astro](https://astro.build/).
 
 ```powershell
 npm run dev
@@ -26,16 +26,7 @@ npm run build
 npm run preview
 ```
 
-`dist/` 是 Astro 构建产物，已经放进 `.gitignore`，需要发布时再重新生成。
-
-## 静态资源
-
-- `css/`、`js/`、`images/`：根目录手写静态主页使用的资源。
-- `notes/`：`note.html` 使用的 Markdown 笔记源文件。
-
-## 整理原则
-
-当前先保留“手写静态页”和“Astro 源码”两套结构，避免影响现有页面访问。后续如果要继续整理，建议选择一个主线：
-
-1. 继续以根目录 `index.html` 为发布主入口，Astro 目录仅作为备份/实验。
-2. 或者把 `parallel-practice/`、`linear-algebra-practice/` 等入口同步进 `src/pages/index.astro`，统一改成 Astro 构建发布。
+- `src/pages/`: Astro page sources
+- `src/styles/global.css`: shared site styles
+- `public/`: static assets and CV sources
+- `index.html`, `blog/`, and `cv/`: files published by GitHub Pages
