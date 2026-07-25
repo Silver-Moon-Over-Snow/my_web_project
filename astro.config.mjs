@@ -4,7 +4,7 @@ import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 
 export default defineConfig({
-  site: 'https://silver-moon-over-snow.github.io',
+  site: 'https://cheerly-pku.github.io',
   output: 'static',
   integrations: [sitemap()],
   markdown: {

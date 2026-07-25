@@ -1,6 +1,6 @@
 # Cheerly 的个人主页
 
-这是 `silver-moon-over-snow.github.io` 的个人主页仓库，包含主页、Markdown 笔记和课程资料入口。
+这是 `cheerly-pku.github.io` 的个人主页仓库，包含主页、Markdown 笔记和课程资料入口。
 
 ## 主要入口
 
